@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Nouveau Film</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-item>
+    <ion-input type="text" label="Affiche" [(ngModel)]="film.pictureLink"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" label="Titre" [(ngModel)]="film.title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" label="Pays" [(ngModel)]="film.country"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" label="Date" [(ngModel)]="film.releaseDate"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" label="Réalisateur" [(ngModel)]="film.realisator"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" label="Producteur" [(ngModel)]="film.productor"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" label="Musique" [(ngModel)]="film.music"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" label="Scénario" [(ngModel)]="film.scenario"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="text" label="Durée" [(ngModel)]="film.time"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-toggle label="Au cinéma" [(ngModel)]="film.inStreaming"></ion-toggle>
+  </ion-item>
+  <ion-item>
+    <ion-textarea label="Synopsis" rows="20" [(ngModel)]="film.synopsis"></ion-textarea>
+  </ion-item>
+  <p class="text-center">
+    <ion-button (click)="add()">Envoyer</ion-button>
+  </p>
+</ion-content>

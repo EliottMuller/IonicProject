@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ma bibliothèque</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <h2>Ajout d'un nouveau film</h2>
+  <ion-button routerLink="/films/new">Création</ion-button>
+  <h2>Liste des films</h2>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="4" *ngFor="let film of films">
+        <ion-card [routerLink]="['/films', film.id]">
+          <img [src]="film.pictureLink" [alt]="film.title">
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer>
+  Pied de page
+</ion-footer>
+

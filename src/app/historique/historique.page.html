@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-title class="ion-text-center">Historique</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Historique</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div class="historique-container ion-padding">
+    @if (!(historique$ | async)) {
+        <ion-card class="empty-state">
+            <ion-icon name="document-outline" class="empty-icon"></ion-icon>
+          <ion-card-header>
+            <ion-card-title>Aucun historique</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+    } @else{
+    <ion-list lines="none">
+      @for(result of historique$ | async; track result) {
+      <ion-card class="result-card">
+        <ion-item lines="none">
+          <ion-thumbnail slot="start" class="result-thumbnail">
+            <img [src]="result.image" alt="Icone de signalisation" />
+          </ion-thumbnail>
+          <ion-label>
+            <h2>{{ result.nom }}</h2>
+            <p>
+              Lorem ipsum dolor sit amet, dolor consectetur adipiscing elit.
+            </p>
+          </ion-label>
+          <ion-badge slot="end" [color]="getBadgeColor(result.score)">
+            {{ result.score }}%
+          </ion-badge>
+        </ion-item>
+      </ion-card>
+      }
+    </ion-list>
+    }
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="genererPDF()">
+      <ion-icon name="cloud-download-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

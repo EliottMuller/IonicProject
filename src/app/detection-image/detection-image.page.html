@@ -1,0 +1,83 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/detection"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Analyse d'Image</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="shareResults()">
+        <ion-icon name="share-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="detection-content ion-no-padding">
+  <div class="detection-container">
+    <div class="image-section">
+      @if (image) {
+      <ion-card class="image-card">
+        <div class="image-wrapper" (click)="resetHighlight()">
+          <img [src]="image" alt="Image analysée" #imageElement />
+          <canvas #canvasElement></canvas>
+        </div>
+        <ion-card-content>
+          <ion-chip color="primary">
+            <ion-icon name="time-outline"></ion-icon>
+            <ion-label>{{ detectionTime }}ms</ion-label>
+          </ion-chip>
+          <ion-chip [color]="confidenceColor">
+            <ion-icon name="analytics-outline"></ion-icon>
+            <ion-label>{{ averageConfidence }}% confiance</ion-label>
+          </ion-chip>
+        </ion-card-content>
+      </ion-card>
+      }
+    </div>
+
+    @if (predictions.length > 0) {
+    <ion-card class="predictions-card">
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="eye-outline"></ion-icon>
+          Objets Détectés ({{ predictions.length }})
+        </ion-card-title>
+        <ion-card-subtitle>
+          Cliquez sur un objet pour le mettre en évidence
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-list lines="full">
+        @for(prediction of predictions; track prediction; let i = $index) {
+        <ion-item
+          class="prediction-item"
+          [class.selected]="selectedPrediction === i"
+          (click)="highlightObject(i)"
+          [button]="true"
+        >
+          <ion-avatar slot="start">
+            <div class="prediction-number">{{ i + 1 }}</div>
+          </ion-avatar>
+          <ion-label>
+            <h2>{{ prediction.class | titlecase }}</h2>
+            <p>
+              <ion-text [color]="getConfidenceColor(prediction.score)">
+                Confiance: {{ (prediction.score * 100) | number: '1.0-0' }}%
+              </ion-text>
+            </p>
+          </ion-label>
+          <ion-button
+            slot="end"
+            fill="clear"
+            (click)="ajoutHistorique(prediction); $event.stopPropagation()"
+          >
+            <ion-icon name="bookmark-outline"></ion-icon>
+          </ion-button>
+        </ion-item>
+        }
+      </ion-list>
+    </ion-card>
+
+    }
+  </div>
+</ion-content>

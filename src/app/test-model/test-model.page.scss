@@ -1,0 +1,70 @@
+.test-model-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 20px;
+}
+
+.input-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.file-input-item {
+  margin-top: 10px;
+}
+
+.file-input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  .file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+  }
+}
+
+.preview-container {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.preview-card {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.preview-canvas {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.detection-button {
+  margin-top: auto;
+  --border-radius: 12px;
+}
+
+.predictions-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+  .input-card,
+  .preview-card,
+  .predictions-card {
+    background-color: #2c2c2e;
+  }
+}

@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Détection d'Objets</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="detection-content">
+  <div class="camera-container">
+    <video #video class="camera-video" autoplay playsinline></video>
+    <div class="camera-overlay">
+
+
+      <div class="camera-ui">
+        <div class="detection-info">
+          <ion-chip color="primary" class="object-count" *ngIf="detectedObjects?.length">
+            <ion-label>{{ detectedObjects.length }} objets détectés</ion-label>
+          </ion-chip>
+        </div>
+      </div>
+    </div>‡
+
+    <canvas #canvas class="detection-canvas"></canvas>
+  </div>
+</ion-content>

@@ -1,0 +1,72 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Tester le Modèle</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="test-model-container">
+    <ion-card class="input-card">
+      <ion-card-content>
+        <ion-item lines="none" class="file-input-item">
+          <ion-label position="stacked">Importer une Image</ion-label>
+          <div class="file-input-wrapper">
+            <input
+              type="file"
+              accept="image/*"
+              (change)="onImageSelected($event)"
+              class="file-input"
+            />
+            <ion-button fill="outline" size="small">
+              Choisir une image
+            </ion-button>
+          </div>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+
+    @if (image) {
+    <div class="preview-container">
+      <ion-card class="preview-card">
+        <canvas #canvas class="preview-canvas"></canvas>
+      </ion-card>
+    </div>
+    }
+
+    <ion-button
+      expand="block"
+      (click)="runDetection()"
+      [disabled]="!image || !model"
+      class="detection-button"
+    >
+      Tester le Modèle
+    </ion-button>
+
+    @if (predictions?.length) {
+    <ion-card class="predictions-card">
+      <ion-card-header>
+        <ion-card-title>Résultats de détection</ion-card-title>
+      </ion-card-header>
+      <ion-list lines="none">
+        @for(prediction of predictions; track prediction) {
+        <ion-item>
+          <ion-label>
+            <h3>{{ prediction.class }}</h3>
+            <p>Score: {{ (prediction.score * 100) | number:'1.0-2' }}%</p>
+          </ion-label>
+          <ion-badge
+            slot="end"
+            [color]="getBadgeColor(prediction.score)"
+          >
+            {{ (prediction.score * 100) | number:'1.0-2' }}%
+          </ion-badge>
+        </ion-item>
+        }
+      </ion-list>
+    </ion-card>
+    }
+  </div>
+</ion-content>

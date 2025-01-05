@@ -1,0 +1,34 @@
+ion-grid {
+  --ion-grid-padding: 8px;
+}
+
+ion-col {
+  margin-bottom: 16px; /* Espace entre les colonnes */
+}
+
+ion-card {
+  --card-background: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+ion-thumbnail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  margin-bottom: 8px;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+}
+
+p {
+  font-size: 14px; /* Taille de police pour le texte */
+  font-weight: bold;
+  text-align: center;
+}

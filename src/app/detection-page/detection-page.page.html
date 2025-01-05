@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="light">
+    <ion-title class="ion-text-center">Détection</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="detection-container">
+    <!-- Ajouter une Image -->
+    <ion-card class="action-card" button="true" (click)="importImage()">
+      <ion-card-content class="card-content">
+        <ion-icon name="images-outline" class="card-icon"></ion-icon>
+        <ion-label class="card-label">Ajouter une Image</ion-label>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Capturer une Vidéo -->
+    <ion-card class="action-card" button="true" [routerLink]="['/detection']">
+      <ion-card-content class="card-content">
+        <ion-icon name="videocam-outline" class="card-icon"></ion-icon>
+        <ion-label class="card-label">Capturer une Vidéo</ion-label>
+      </ion-card-content>
+    </ion-card>
+
+    <!-- Entraîner le Modèle -->
+    <ion-card class="action-card" button="true" [routerLink]="['/training']">
+      <ion-card-content class="card-content">
+        <ion-icon name="school-outline" class="card-icon"></ion-icon>
+        <ion-label class="card-label">Entraîner le Modèle</ion-label>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
